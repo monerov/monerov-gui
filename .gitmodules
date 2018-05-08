@@ -1,0 +1,3 @@
+[submodule "monerov"]
+	path = monerov
+	url = git@github.com:monerov/monerov.git
