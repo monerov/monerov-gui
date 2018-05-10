@@ -43,7 +43,7 @@ See [LICENSE](LICENSE).
 
 2. Grab an up-to-date copy of the monerov-gui repository
 
-	`git clone https://github.com/monerov/monerov-gui.git`
+	`git clone --recursive https://github.com/monerov/monerov-gui.git`
 
 3. Go into the repository
 
