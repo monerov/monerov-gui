@@ -154,57 +154,40 @@ More info: http://stackoverflow.com/a/35098040/1683164
 
 ### On Windows:
 
-1. Install [msys2](http://msys2.github.io/), follow the instructions on that page on how to update packages to the latest versions
+1. Install [MSYS2](https://www.msys2.org/), follow the instructions on that page on how to update packages to the latest versions
 
-2. Install MoneroV dependencies as described in [monerov documentation](https://github.com/monerov/monerov) into msys2 environment
-   **As we only build application for x86, install only dependencies for x86 architecture (i686 in package name)**
+2. Install MoneroV dependencies as described in [monerov documentation](https://github.com/monerov/monerov) into the MSYS2 environment (using the MSYS2 MinGW 64-bit shell)
+   **As we only build the application for Windows 64-bit, install only dependencies for 64-bit architecture (x86_64 in package name)**
    ```
-   pacman -S mingw-w64-i686-toolchain make mingw-w64-i686-cmake mingw-w64-i686-boost mingw-w64-i686-openssl mingw-w64-i686-zeromq mingw-w64-i686-libsodium
+   pacman -S mingw-w64-x86_64-toolchain make mingw-w64-x86_64-cmake mingw-w64-x86_64-boost mingw-w64-x86_64-openssl mingw-w64-x86_64-zeromq mingw-w64-x86_64-libsodium
 
    ```
 
-3. Install git into msys2 environment
+3. Install git into MSYS2 environment
 
     ```
     pacman -S git
     ```
 
-4. Install Qt5 from [official site](https://www.qt.io/download-open-source/)
-   - download unified installer, run and select following options:
-       - Qt > Qt 5.7 > MinGW 5.3.0 32 bit
-       - Tools > MinGW 5.3.0
-   - continue with installation
+4. Install Qt5 into the MSYS2 enviroment
 
-5. Open ```MinGW-w64 Win32 Shell``` shell
-
-   ```%MSYS_ROOT%\msys2_shell.cmd -mingw32```
-
-   Where ```%MSYS_ROOT%``` will be ```c:\msys32``` if your host OS is x86-based or ```c:\msys64``` if your host OS
-   is x64-based
-
-6. Install the latest version of boost, specifically the required static libraries
     ```
-    cd
-    wget http://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.bz2
-    tar xjf boost_1_63_0.tar.bz2
-    cd boost_1_63_0
-    ./bootstrap.sh mingw
-    ./b2 --prefix=/mingw32/boost --layout=tagged --without-mpi --without-python toolset=gcc address-model=32 variant=debug,release link=static threading=multi runtime-link=static -j$(nproc) install
+    pacman -S mingw-w64-x86_64-qt5
     ```
 
-7. Clone repository
+5. Clone repository
+
     ```
-    cd
     git clone https://github.com/monerov/monerov-gui.git
     ```
 
-8. Build the GUI
+6. Build the GUI
     ```
     cd monerov-gui
-    export PATH=$(ls -rd /c/Qt/5.[6,7,8]/mingw53_32/bin | head -1):$PATH
     ./build.sh
     cd build
     make deploy
     ```
 
 The executable can be found in the ```.\release\bin``` directory.
+Depending on your machine's graphics card, you might need to ```export QT_QUICK_BACKEND="software"``` from inside the MSYS2 MinGW 64-bit shell to get the application started.
