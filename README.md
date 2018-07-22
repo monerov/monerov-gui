@@ -191,3 +191,7 @@ More info: http://stackoverflow.com/a/35098040/1683164
 
 The executable can be found in the ```.\release\bin``` directory.
 Depending on your machine's graphics card, you might need to ```export QT_QUICK_BACKEND="software"``` from inside the MSYS2 MinGW 64-bit shell to get the application started.
+
+## Known issues
+
+Please refer to the open issues tab to see open and closed known issues.
